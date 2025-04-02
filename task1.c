@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 typedef struct {
     char tip;   // 's' = short sau 'l' = long 
@@ -109,8 +108,9 @@ void writeArguments(FILE* fout, argument* arguments, int count_args) {
             } else {
                 fprintf(fout, "%s", (char*)arguments[i].valoare);
             }
+            fprintf(fout, " ");
         }
-        fprintf(fout, " \n");
+        fprintf(fout, "\n");
     }
 }
 
@@ -163,8 +163,8 @@ int main(int argc, char** argv){
                     char id[100];
                     strncpy(id, startID, lenID);
                     id[lenID] = '\0';
-                    for (int j = 0; j < count_args; j++)
-                        if (arguments[j].tip == 'o' && arguments[j].nr_ids > 0 && strcmp(arguments[j].ids[0].id, id) == 0) {
+                    for (int j = 0; j < count_args; j++)   
+                        if (arguments[j].nr_ids > 0 && arguments[j].tip == 'o' && strcmp(arguments[j].ids[0].id, id) == 0) {
                             arguments[j].valoare = duplicateString(equal + 1);
                             break;
                         }
@@ -177,7 +177,7 @@ int main(int argc, char** argv){
                         flag[0] = argv[i][k];
                         flag[1] = '\0';
                         for (int j = 0; j < count_args; j++)
-                            if (arguments[j].tip == 'f' && arguments[j].nr_ids > 0 && strcmp(arguments[j].ids[0].id, flag) == 0 && arguments[j].valoare == NULL) {
+                            if (arguments[j].nr_ids > 0 && arguments[j].tip == 'f' && strcmp(arguments[j].ids[0].id, flag) == 0 && arguments[j].valoare == NULL) {
                                 int* flagVal = malloc(sizeof(int));
                                 *flagVal = 1;
                                 arguments[j].valoare = flagVal;
@@ -214,8 +214,8 @@ int main(int argc, char** argv){
                     char id[100];
                     strncpy(id, startID, lenID);
                     id[lenID] = '\0';
-                    for (int j = 0; j < count_args; j++) {
-                        if (arguments[j].tip == 'o' && arguments[j].nr_ids > 0 && strcmp(arguments[j].ids[0].id, id) == 0) 
+                    for (int j = 0; j < count_args; j++) 
+                        if (arguments[j].nr_ids > 0 && arguments[j].tip == 'o' && strcmp(arguments[j].ids[1].id, id) == 0) {
                             arguments[j].valoare = duplicateString(equal + 1);
                             break;
                         }
@@ -224,7 +224,7 @@ int main(int argc, char** argv){
                     //flag lung singur sau optiune lunga cu valoare in urmatorul element
                     char* startID = argv[i] + 2;
                     for (int j = 0; j < count_args; j++)
-                        if (arguments[j].nr_ids > 0 && strcmp(arguments[j].ids[0].id, startID) == 0) {
+                        if (arguments[j].nr_ids > 0 && strcmp(arguments[j].ids[1].id, startID) == 0) {
                             if (arguments[j].tip == 'f') {
                                 if (arguments[j].valoare == NULL) {
                                     int* flagVal = malloc(sizeof(int));
