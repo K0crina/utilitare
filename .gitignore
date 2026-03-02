@@ -2,3 +2,4 @@ out/
 .vscode/
 *.o
 tema
+.DS_Store
