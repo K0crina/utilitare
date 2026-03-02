@@ -2,7 +2,7 @@
 
 📌 General Description
 This project consists of developing four command-line utilities that emulate the behavior of classic Linux commands (`ls`, `diff`, `cd`). 
-The focus is on parameter processing, directory structure management, relative path calculation, and identifying differences between files.
+The focus is on parameter processing, directory structure management, relative path calculation and identifying differences between files.
 
 ▶️ Compilation
 - For the main application (Tasks 1-4): 
