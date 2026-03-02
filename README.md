@@ -1,65 +1,65 @@
-📁 Proiect: Utilitare Terminal 
+📁 Project: Terminal Utilities
 
-📌 Descriere generală
-Proiectul constă în dezvoltarea a patru utilitare de tip linie de comandă, care emulează comportamentul unor comenzi clasice din Linux (`ls`, `diff`, `cd`). 
-Accentul cade pe procesarea parametrilor, gestionarea structurii directoarelor, calculul căilor relative și identificarea diferențelor între fișiere.
+📌 General Description
+This project consists of developing four command-line utilities that emulate the behavior of classic Linux commands (`ls`, `diff`, `cd`). 
+The focus is on parameter processing, directory structure management, relative path calculation, and identifying differences between files.
 
-▶️ Compilare
-- Pentru aplicația principală (Task 1-4): 
+▶️ Compilation
+- For the main application (Tasks 1-4): 
 gcc tema.c task1.c task2.c task3.c task4.c -o tema
 
-- Pentru utilitarul de verificare a dependențelor (Bonus):
+- For the dependency checker utility (Bonus):
 gcc util_lib.c -o util_lib
 
 
-📂 Task 1 – Parsare Argumente și Opțiuni
+📂 Task 1 – Argument and Option Parsing
 
-📘 Descriere:
-Imită comportamentul comenzilor variadice din terminal. Primește un apel de tip ./program optiuni argumente flaguri și identifică:
-- Argumentele poziționale
-- Opțiunile (scurt/lung)
-- Flagurile (fără valoare)
+📘 Description:
+Imitates the behavior of variadic terminal commands. It receives a call like `./program options arguments flags` and identifies:
+- Positional arguments
+- Options (short/long)
+- Flags (no value)
 
-🧪 Apel:
-./tema task1 --file=input.in --out=output.out [argumente] [--opt=val] [-f]
+🧪 Usage:
+./tema task1 --file=input.in --out=output.out [arguments] [--opt=val] [-f]
 
-📂 Task 2 – Simulare `ls` cu Stivă
+📂 Task 2 – `ls` Simulation with Stack
 
-📘 Descriere:
-Simulează comanda ls și afişează conținutul unui director, cu suport pentru:
+📘 Description:
+Simulates the `ls` command and displays the contents of a directory, supporting:
 - -h / --human-readable
 - -r / --recursive
 - -d / --directory
 
-🧪 Apel:
-./tema task2 <cale_director> [d|h|r|rh] --out=output.out
+🧪 Usage:
+./tema task2 <directory_path> [d|h|r|rh] --out=output.out
 
-📂 Task 3 – Calcul Cale Relativă între Directoare
+📂 Task 3 – Relative Path Calculation between Directories
 
-📘 Descriere:
-Imită comanda cd pentru navigare în arborele de directoare. Construiește un arbore și determină calea relativă între două directoare absolute.
+📘 Description:
+Imitates the `cd` command for navigating the directory tree. It builds a tree and determines the relative path between two absolute directories.
 
-🧪 Apel:
-./tema task3 /cale/sursa /cale/destinatie --out=output.out
+🧪 Usage:
+./tema task3 /source/path /destination/path --out=output.out
 
-📂 Task 4 – Comparare Fișiere (Diff între Linii)
+📂 Task 4 – File Comparison (Line-by-Line Diff)
 
-📘 Descriere:
-Simulează comanda diff. Compară două fișiere linie cu linie și calculează:
+📘 Description:
+Simulates the `diff` command. It compares two files line by line and calculates:
 - Delete (D)
 - Insert (I)
 - Replace (R)
 
-🧪 Apel:
+🧪 Usage:
 ./tema task4 file1.txt file2.txt --out=output.txt
 
-📂 Bonus – Verificator de Dependențe (Include-uri)
+📂 Bonus – Dependency Checker (Includes)
 
-📘 Descriere:
-Un utilitar separat (`util_lib.c`) care parcurge un director și analizează fișierele sursă C/C++ (`.c`, `.h`). 
-Acesta identifică posibile probleme de arhitectură în cod detectând buclele de includere (circular dependencies)  și importurile redundante.
-- Loop Detection: Detectează dacă fișierele se includ reciproc într-o buclă infinită (ex: A include B, care include A).
-- Double Includes: Cu ajutorul flag-ului `--full`, afișează avertismente (WARNING) dacă un anumit fișier header este inclus de mai multe ori în mod redundant în fișiere diferite.
+📘 Description:
+A separate utility (`util_lib.c`) that traverses a directory and analyzes C/C++ source files (`.c`, `.h`). 
+It identifies potential architectural issues in the code by detecting include loops (circular dependencies) and redundant imports.
+- Loop Detection: Detects if files mutually include each other in an infinite loop (e.g., A includes B, which includes A).
+- Double Includes: Using the `--full` flag, it displays warnings (WARNING) if a specific header file is redundantly included multiple times across different files.
 
-🧪 Apel:
-./util_lib <cale_director> [--full]
+🧪 Usage:
+./util_lib <directory_path> [--full]
